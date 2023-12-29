@@ -3,6 +3,7 @@ FROM ubuntu:22.04
 ENV TZ Asia/Seoul
 ENV PYTHONIOENCODING UTF-8
 ENV LC_CTYPE C.UTF-8
+ARG DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && apt-get upgrade
 RUN apt install -y socat gdb git gcc curl wget vim ruby ruby-dev

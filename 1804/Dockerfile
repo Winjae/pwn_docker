@@ -32,7 +32,7 @@ RUN wget https://github.com/pwndbg/pwndbg/archive/refs/tags/2023.03.19.tar.gz
 RUN tar xvf 2023.03.19.tar.gz
 RUN mv pwndbg-2023.03.19 pwndbg
 WORKDIR /pwndbg
-Run sed -i 's/git submodule update --init --recursive/# git submodule update --init --recursive/' setup.sh
+RUN sed -i 's/git submodule update --init --recursive/# git submodule update --init --recursive/' setup.sh
 RUN ./setup.sh
 RUN echo "source /pwndbg/gdbinit.py" >> ~/.gdbinit
 

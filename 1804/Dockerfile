@@ -28,7 +28,7 @@ RUN gem install seccomp-tools -v 1.5.0
 
 RUN wget https://github.com/pwndbg/pwndbg/archive/refs/tags/2023.03.19.tar.gz
 RUN tar xvf 2023.03.19.tar.gz
-RUN mv pwndbg-2023.03.19 .pwndbg
+RUN mv pwndbg-2023.03.19 pwndbg
 RUN echo "source /root/pwndbg/gdbinit.py" >> ~/.gdbinit
 
 RUN mkdir /pwn

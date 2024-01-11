@@ -9,20 +9,6 @@ RUN apt install -y python3 python3-pip python3-dev python3-setuptools python-cap
 RUN apt install -y libc6-dbg gcc-multilib make gcc netcat git curl wget gdb vim nano zsh ruby-full
 RUN apt install -y net-tools openssh-server
 
-RUN wget http://archive.ubuntu.com/ubuntu/pool/main/g/glibc/libc-bin_2.27-3ubuntu1.6_amd64.deb
-RUN wget http://archive.ubuntu.com/ubuntu/pool/main/g/glibc/libc-dev-bin_2.27-3ubuntu1.6_amd64.deb
-RUN wget http://archive.ubuntu.com/ubuntu/pool/main/g/glibc/libc6-dbg_2.27-3ubuntu1.6_amd64.deb
-RUN wget http://archive.ubuntu.com/ubuntu/pool/main/g/glibc/libc6-dev_2.27-3ubuntu1.6_amd64.deb
-RUN wget http://archive.ubuntu.com/ubuntu/pool/main/g/glibc/libc6-i386_2.27-3ubuntu1.6_amd64.deb
-RUN wget http://archive.ubuntu.com/ubuntu/pool/main/g/glibc/libc6_2.27-3ubuntu1.6_amd64.deb
-
-RUN dpkg -i libc-bin_2.27-3ubuntu1.6_amd64.deb
-RUN dpkg -i libc-dev-bin_2.27-3ubuntu1.6_amd64.deb
-RUN dpkg -i libc6_2.27-3ubuntu1.6_amd64.deb
-RUN dpkg -i libc6-dev_2.27-3ubuntu1.6_amd64.deb
-RUN dpkg -i libc6-i386_2.27-3ubuntu1.6_amd64.deb
-RUN dpkg -i libc6-dbg_2.27-3ubuntu1.6_amd64.deb
-
 RUN python3 -m pip install --upgrade pip
 RUN pip3 install pwntools ropgadget
 RUN gem install one_gadget
@@ -35,6 +21,17 @@ WORKDIR /pwndbg
 RUN sed -i 's/git submodule update --init --recursive/# git submodule update --init --recursive/' setup.sh
 RUN ./setup.sh
 RUN echo "source /pwndbg/gdbinit.py" >> ~/.gdbinit
+
+WORKDIR /root
+RUN apt install -y dh-autoreconf
+RUN git clone https://github.com/NixOS/patchelf
+WORKDIR /root/patchelf
+RUN git checkout 0.17.2
+RUN ./bootstrap.sh
+RUN ./configure
+RUN make
+RUN make check
+RUN sudo make install
 
 RUN mkdir /pwn
 WORKDIR /pwn

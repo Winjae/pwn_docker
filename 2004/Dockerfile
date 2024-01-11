@@ -25,5 +25,17 @@ RUN cd pwndbg && ./setup.sh
 RUN echo 'source /pwndbg/gdbinit.py' >> /root/.gdbinit
 
 WORKDIR /root
+RUN apt install -y dh-autoreconf
+RUN git clone https://github.com/NixOS/patchelf
+WORKDIR /root/patchelf
+RUN git checkout 0.17.2
+RUN ./bootstrap.sh
+RUN ./configure
+RUN make
+RUN make check
+RUN sudo make install
+
+RUN mkdir /pwn
+WORKDIR /pwn
 
 EXPOSE 22

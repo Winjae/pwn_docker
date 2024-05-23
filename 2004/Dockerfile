@@ -33,7 +33,7 @@ RUN ./bootstrap.sh
 RUN ./configure
 RUN make
 RUN make check
-RUN sudo make install
+RUN make install
 
 RUN mkdir /pwn
 WORKDIR /pwn

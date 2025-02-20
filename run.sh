@@ -10,16 +10,16 @@ version=$1
 
 case $version in
     1604)
-        docker exec -it ctf:1604 /bin/bash
+        docker exec -it ctf_1604 /bin/bash
         ;;
     1804)
-        docker exec -it ctf:1804 /bin/bash
+        docker exec -it ctf_1804 /bin/bash
         ;;
     2004)
-        docker exec -it ctf:2004 /bin/bash
+        docker exec -it ctf_2004 /bin/bash
         ;;
     2204)
-        docker exec -it ctf:2204 /bin/bash
+        docker exec -it ctf_2204 /bin/bash
         ;;
     *)
         echo "Unsupported version: $version"

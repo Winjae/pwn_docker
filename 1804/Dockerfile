@@ -11,7 +11,8 @@ RUN apt install -y net-tools openssh-server
 
 RUN python3 -m pip install --upgrade pip
 RUN pip3 install pwntools ropgadget
-RUN gem install one_gadget
+RUN gem install elftools -v 1.1.3
+RUN gem install one_gadget -v 1.9.0
 RUN gem install seccomp-tools -v 1.5.0
 
 RUN wget https://github.com/pwndbg/pwndbg/archive/refs/tags/2023.03.19.tar.gz
